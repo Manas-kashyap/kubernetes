@@ -12,3 +12,5 @@ spec:
   volumes:
   - name: myempty-storage
     emptyDir: {}
+  nodeSelector:
+    demoserver: "true"

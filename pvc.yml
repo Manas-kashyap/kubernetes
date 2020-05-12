@@ -4,6 +4,7 @@ metadata:
   name: pv-claim
 spec:
   storageClassName: manual
+  # storageClassName: custom
   accessModes:
     - ReadWriteOnce
   resources:

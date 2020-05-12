@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-pvc
+  labels:
+    volume: nginx-pvc
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      volume: nginx-pvc
+  template:
+    metadata:
+      labels:
+        volume: nginx-pvc
+    spec:
+      containers:
+      - name: nginx
+        image: nginx
+        volumeMounts:
+        - name: pvc-volume
+          mountPath: /usr/share/nginx
+      volumes:
+      - name: pvc-volume
+        persistentVolumeClaim:
+          claimName: pv-claim
