@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-hostpath
+  labels:
+    volume: nginx-hostpath
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      volume: nginx-hostpath
+  template:
+    metadata:
+      labels:
+        volume: nginx-hostpath
+    spec:
+      containers:
+      - name: nginx
+        image: nginx
+        volumeMounts:
+        - name: hostpath-volume
+          mountPath: /usr/share/nginx
+      volumes:
+      - name: hostpath-volume
+        hostPath:
+          path: /usr/test-vol
