@@ -12,19 +12,14 @@ spec:
         disktype: ssd1
     spec:
       containers:
-      - name: fluentd-elasticsearch
-        image: quay.io/fluentd_elasticsearch/fluentd:v2.5.2
+      - name: nginx 
+        image: nginx
         volumeMounts:
         - name: varlog
-          mountPath: /var/log
-        - name: varlibdockercontainers
-          mountPath: /var/lib/docker/containers
+          mountPath: /usr/share/nginx
       volumes:
       - name: varlog
         hostPath:
-          path: /var/log
-      - name: varlibdockercontainers
-        hostPath:
-          path: /var/lib/docker/containers
+          path: /usr/
       nodeSelector:
         gpupresent: "true"
